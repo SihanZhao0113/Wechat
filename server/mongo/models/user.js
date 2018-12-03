@@ -1,11 +1,11 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-var loginSchema = new Schema({
+const userSchema = new Schema({
     username: String,
     password: String,
     nickname: String,
-    friends: Array,
+    friends: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     logo: {
         type: String,
         default: './image/icon_moren_face.png'
@@ -13,6 +13,4 @@ var loginSchema = new Schema({
     rooms: Array
 });
 
-var User = mongoose.model('user', loginSchema);
-
-module.exports = User;
+const User = mongoose.model('User', userSchema);
